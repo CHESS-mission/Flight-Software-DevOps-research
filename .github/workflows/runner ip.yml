@@ -21,4 +21,4 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: Run a one-line script
-        run: echo ip -4 addr | grep -oP '(?<=inet\s)\d+(\.\d+){3}'
+        run: ip -4 addr | grep -oP '(?<=inet\s)\d+(\.\d+){3}'
