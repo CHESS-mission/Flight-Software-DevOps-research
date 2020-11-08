@@ -22,3 +22,16 @@ jobs:
       # Runs a single command using the runners shell
       - name: Echo IPV4 adresses
         run: ip -4 addr | grep -oP '(?<=inet\s)\d+(\.\d+){3}'
+      # Save the command results in a log file
+      - name: Save the IP adresses in log file
+        run: |
+          mkdir -p ~/ip
+          ip -4 addr | grep -oP '(?<=inet\s)\d+(\.\d+){3}' > ~/ip/lastip.txt
+          echo "$(date) IP served as self-hosted runner"
+          echo "$(date) IP served as self-hosted runner" >> ~/ip/log.txt
+      # Upload the artifact
+      - name: Upload artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: IP addresses
+          path: ~/ip/lastip.txt
