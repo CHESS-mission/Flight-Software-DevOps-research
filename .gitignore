@@ -30,3 +30,7 @@
 *.exe
 *.out
 *.app
+
+#fprime build
+fprime/Ref/build*
+fprime-venv/
