@@ -20,11 +20,11 @@ namespace Ref {
   // Construction, initialization, and destruction 
   // ----------------------------------------------------------------------
 
-  /*PingReceiverComponentImpl :: 
+  PingReceiverComponentImpl :: 
     PingReceiverComponentImpl(
         const char *const compName
     ) : PingReceiverComponentBase(compName), m_inhibitPings(false), m_pingsRecvd(0)
-  {*/
+  {
 
   }
 
