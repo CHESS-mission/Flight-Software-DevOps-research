@@ -4,14 +4,13 @@ name: Manual Build
 # runs on dispatch - temporary
 on: 
   workflow_dispatch:
+  push:
+    branches: [issue-5-Basic_automation_Build]
 
 jobs:
   build:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        python-version: [3.8]
-
+    
     # https://docs.github.com/en/free-pro-team@latest/actions/guides/building-and-testing-python
     steps:
       # checkout the repository
@@ -20,7 +19,10 @@ jobs:
       - name: prepare python pre-built environnement
         uses: actions/setup-python@v2
         with:
-          python-version: ${{ matrix.python-version }}
+          python-version: '3.8'
+
+      - name: test python is functionnal
+        run: python -c "import sys; print(sys.version)"
       
       - name: Pepare dependencies python, cmake
         run: |
