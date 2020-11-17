@@ -1,12 +1,14 @@
 #!/bin/bash
 
-
 #Activate the python environnement
 . ./fprime-venv/bin/activate
 
 #purge an old app if it exists
 cd fprime/Ref
 echo "purging..."; yes | fprime-util purge
+
+#now exit on error
+set -e
 
 #build the app
 echo "generating..." && fprime-util generate &&

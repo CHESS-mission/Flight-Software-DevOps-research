@@ -1,5 +1,8 @@
 #!/bin/bash
 
+#stop on error
+set -e
+
 #create the venv
 python3 -m venv ./fprime-venv
 
