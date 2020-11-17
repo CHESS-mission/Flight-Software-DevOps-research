@@ -9,14 +9,17 @@ cd fprime/Ref
 echo "purging..."; yes | fprime-util purge
 
 #build the app
-echo "generating..."; fprime-util generate &&
-echo "building...";  fprime-util build
+echo "generating..." && fprime-util generate &&
+echo "building..." &&  fprime-util build
 
-#start the gds
-if [[ $? -eq 0 ]]
+#start the gds if "start" is an argument
+if [[ "$1" == "start" ]]
 then
-	echo "starting gds..."
-	fprime-gds
-else
-	echo "build failed, gds start aborted"
+	if  [[ $? -eq 0 ]]
+	then
+		echo "starting gds..."
+		fprime-gds
+	else
+		echo "build failed, gds start aborted"
+	fi
 fi
