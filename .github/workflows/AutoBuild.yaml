@@ -1,11 +1,7 @@
-# This is a basic workflow to help you get started with Actions
-name: Manual Build
+name: Automatic Application Build
 
-# runs on dispatch - temporary
-on: 
-  workflow_dispatch:
-  push:
-    branches: [issue-5-Basic_automation_Build]
+# Builds project on every push and PR
+on:  [push, pull_request]
 
 jobs:
   build:
@@ -36,10 +32,3 @@ jobs:
       # Build the project (project script)
       - name: Build the project
         run: ./scripts/build.sh
-
-      # Upload the artifact
-      - name: Upload the application binaries
-        uses: actions/upload-artifact@v2
-        with:
-          name: Application binaries
-          path: fprime/Ref/build-*
