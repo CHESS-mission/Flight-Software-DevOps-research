@@ -1,4 +1,4 @@
-name: Automatic Aplication Build
+name: Dayli Aplication Build
 
 # Builds project every day at 5:00
 on:
