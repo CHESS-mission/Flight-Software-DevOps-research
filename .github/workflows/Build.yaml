@@ -1,0 +1,42 @@
+# This is a basic workflow to help you get started with Actions
+name: Manual Build
+
+# runs on dispatch - temporary
+on: 
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.8]
+
+    # https://docs.github.com/en/free-pro-team@latest/actions/guides/building-and-testing-python
+    steps:
+      # checkout the repository
+      - uses: actions/checkout@v2
+
+      # python,cmake
+      - name: prepare python and cmake
+        uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.python-version }}
+        run: |
+          python -m pip install --upgrade pip
+          sudo apt install cmake -y
+        
+      # Init the virtual environnement
+      - name: Prepare venv
+        run: ./scripts/init-venv.sh
+
+      # Build the project
+      - name: Build the project
+        run: ./scripts/build.sh
+
+      # Upload the artifact
+      - name: Upload the final binaries
+        uses: actions/upload-artifact@v2
+        with:
+          name: Application binaries
+          path: fprime/Ref/build-*
