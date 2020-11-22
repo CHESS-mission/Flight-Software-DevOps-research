@@ -96,6 +96,10 @@ Ref::SignalGen SG4(FW_OPTIONAL_NAME("signalGen4"));
 
 Ref::SignalGen SG5(FW_OPTIONAL_NAME("signalGen5"));
 
+//Math tuto components
+Ref::MathSenderComponentImpl mathSender(FW_OPTIONAL_NAME("mathSender"));
+Ref::MathReceiverComponentImpl mathReceiver(FW_OPTIONAL_NAME("mathReceiver"));
+
 Svc::AssertFatalAdapterComponentImpl fatalAdapter(FW_OPTIONAL_NAME("fatalAdapter"));
 
 Svc::FatalHandlerComponentImpl fatalHandler(FW_OPTIONAL_NAME("fatalHandler"));
@@ -165,6 +169,10 @@ bool constructApp(bool dump, U32 port_number, char* hostname) {
     fatalHandler.init(0);
     health.init(25,0);
     pingRcvr.init(10);
+    //Math tuto init
+    mathSender.init(10,0);
+    mathReceiver.init(10,0);
+
     // Connect rate groups to rate group driver
     constructRefArchitecture();
 
@@ -193,10 +201,17 @@ bool constructApp(bool dump, U32 port_number, char* hostname) {
 	health.regCommands();
 	pingRcvr.regCommands();
 
+    //Math tuto commands
+    mathSender.regCommands();
+    mathReceiver.regCommands();
+
     // read parameters
     prmDb.readParamFile();
     recvBuffComp.loadParameters();
     sendBuffComp.loadParameters();
+
+    //Math tuto 
+    mathReceiver.loadParameters();
 
     // set health ping entries
 
@@ -241,6 +256,9 @@ bool constructApp(bool dump, U32 port_number, char* hostname) {
 
     pingRcvr.start(0, 100, 10*1024);
 
+    //math tuto active component
+    mathSender.start(0,100,10*1024);
+
     // Initialize socket server if and only if there is a valid specification
     if (hostname != NULL && port_number != 0) {
         socketIpDriver.startSocketTask(100, 10 * 1024, hostname, port_number);
@@ -262,6 +280,8 @@ void exitTasks(void) {
     fileManager.exit();
     cmdSeq.exit();
     pingRcvr.exit();
+    //Math tuto exit active component
+    mathSender.exit();
     // join the component threads with NULL pointers to free them
     (void) rateGroup1Comp.ActiveComponentBase::join(NULL);
     (void) rateGroup2Comp.ActiveComponentBase::join(NULL);
