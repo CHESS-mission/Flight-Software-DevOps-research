@@ -22,17 +22,18 @@ set -e
 
 #build the app
 echo "generating..."; fprime-util generate
+fprime-util build
 
-#for dir in ./*
-#do
-#	if [[ -d "$dir/test" ]]
-#	then
-#		echo "\Detected component with unit test !"
-#		echo "Building unit test : $dir"
-#		cd $dir
-#		fprime-util build --ut
-#		echo "Testing $dir"
-#		fprime-util check
-#		cd ..
-#	fi
-#done
+for dir in ./*
+do
+	if [[ -d "$dir/test" ]]
+	then
+		echo "\Detected component with unit test !"
+	echo "Building unit test : $dir"
+		cd $dir
+		fprime-util build --ut
+		echo "Testing $dir"
+		fprime-util check
+		cd ..
+fi
+done
