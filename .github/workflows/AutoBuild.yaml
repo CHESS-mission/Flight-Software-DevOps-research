@@ -31,4 +31,14 @@ jobs:
 
       # Build the project (project script)
       - name: Build the project
-        run: ./scripts/build.sh
+        run: ./scripts/build.sh fprime/Ref/
+
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Build unit test
+        run: ./scripts/unit-test.sh fprime/Ref
+
+      - name: test python is functionnal (to test)
+        run: python -c "import sys; print(sys.version)"
