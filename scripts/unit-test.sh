@@ -24,16 +24,30 @@ set -e
 echo "generating..."; fprime-util generate
 fprime-util build
 
+processed_tests=0
+dirs=()
 for dir in ./*
 do
 	if [[ -d "$dir/test" ]]
 	then
-		echo "\Detected component with unit test !"
-	echo "Building unit test : $dir"
+		#echo -e "\n\nDetected component with unit test : $dir"
+		processed_tests=$[processed_tests + 1]
+		dirs+=($dir)
 		cd $dir
 		fprime-util build --ut
-		echo "Testing $dir"
-		fprime-util check
+		#fprime-util check
 		cd ..
 fi
 done
+
+for dir in "${dirs[@]}"
+do
+	if [[ -d "$dir/test" ]]
+	then
+		echo -e "\n\nDetected component with unit test : $dir"
+		cd $dir
+		fprime-util check
+fi
+done
+
+echo -e "\n\nTotal : Checked $processed_tests components for unit tests"
