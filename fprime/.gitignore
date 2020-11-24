@@ -7,7 +7,6 @@ test_harness/src/test_harness-C/application.out
 /.cproject
 *.pyc
 *.o
-*Ac.*
 *ComponentReport.txt
 lib*.a
 *-bin
