@@ -1,14 +1,14 @@
 #!/bin/bash
 
-#activate the python environnement
-. ./fprime-venv/bin/activate
-
 #check if an app name is specified
 if [[ -z "$1" ]]
 then
 	echo "Please specify your app name, exiting..."
 	exit 1
 fi
+
+#activate the python environnement
+. ./fprime-venv/bin/activate
 
 #exit on error
 set -e

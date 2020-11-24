@@ -1,10 +1,17 @@
 #!/bin/bash
 
+#check if an app name is specified
+if [[ -z "$1" ]]
+then
+	echo "Please specify your app name, exiting..."
+	exit 1
+fi
+
 #Activate the python environnement
 . ./fprime-venv/bin/activate
 
 #purge an old app if it exists
-cd fprime/Ref
+cd $1
 echo "purging..."; yes | fprime-util purge
 
 #now exit on error
