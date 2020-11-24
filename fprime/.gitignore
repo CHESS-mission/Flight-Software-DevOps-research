@@ -69,8 +69,6 @@ build-fprime-automatic*
 /RPI/bin
 /ci-venv/
 /ci-logs*
-TesterBase.*
-GTestBase.*
 /Fw/Python/.eggs
 /Fw/Python/src/fprime.egg-info
 /Gds/src/fprime_gds.egg-info
