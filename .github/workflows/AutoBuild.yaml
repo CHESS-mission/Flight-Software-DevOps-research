@@ -9,8 +9,6 @@ env:
 jobs:
   build:
     runs-on: ubuntu-latest
-
-    
     # https://docs.github.com/en/free-pro-team@latest/actions/guides/building-and-testing-python
     steps:
       # checkout the repository
@@ -39,7 +37,6 @@ jobs:
 
   test:
     runs-on: ubuntu-latest
-
     steps:
           # checkout the repository
       - uses: actions/checkout@v2
@@ -64,6 +61,3 @@ jobs:
       # Start unit test
       - name: Build unit test
         run: ./scripts/unit-test.sh ${path}
-
-      - name: test python is functionnal (to test)
-        run: python -c "import sys; print(sys.version)"

@@ -1,5 +1,6 @@
 #!/bin/bash
 
+
 #check if an app name is specified
 if [[ -z "$1" ]]
 then
@@ -10,16 +11,21 @@ fi
 #activate the python environnement
 . ./fprime-venv/bin/activate
 
-#exit on error
+#purge an old app if it exists
+cd $1
+echo "purging..."; yes | fprime-util purge
+
+#now exit on error
 set -e
 
-#build the unit test
-cd $1
+#build the app
+echo "generating..."; fprime-util generate
+
 for dir in ./*
 do
 	if [[ -d "$dir/test" ]]
 	then
-		echo "Detected component with unit test !"
+		echo "\n\nDetected component with unit test !"
 		echo "Building unit test : $dir"
 		cd $dir
 		fprime-util build --ut
