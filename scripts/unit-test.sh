@@ -13,6 +13,8 @@ fi
 
 #purge an old app if it exists
 cd $1
+echo "PWD"
+pwd
 echo "purging..."; yes | fprime-util purge
 
 #now exit on error
@@ -25,7 +27,7 @@ echo "generating..."; fprime-util generate
 #do
 #	if [[ -d "$dir/test" ]]
 #	then
-#		echo "\n\nDetected component with unit test !"
+#		echo "\Detected component with unit test !"
 #		echo "Building unit test : $dir"
 #		cd $dir
 #		fprime-util build --ut
