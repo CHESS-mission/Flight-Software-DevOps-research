@@ -13,8 +13,6 @@ fi
 
 #purge an old app if it exists
 cd $1
-echo "PWD"
-pwd
 echo "purging..."; yes | fprime-util purge
 
 #now exit on error
@@ -22,7 +20,6 @@ set -e
 
 #build the app
 echo "generating..."; fprime-util generate
-fprime-util build
 
 processed_tests=0
 dirs=()
