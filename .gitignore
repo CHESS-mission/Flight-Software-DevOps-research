@@ -34,3 +34,6 @@
 #fprime build
 fprime/Ref/build*
 fprime-venv/
+
+#linux swap files
+*.swp

@@ -35,7 +35,7 @@ jobs:
 
       # Build the project (project script)
       - name: Build the project
-        run: ./scripts/build.sh
+        run: ./scripts/build.sh fprime/Ref
 
       # Upload the artifact
       - name: Upload the application binaries
