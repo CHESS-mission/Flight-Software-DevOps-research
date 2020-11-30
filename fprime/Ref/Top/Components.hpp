@@ -24,6 +24,10 @@
 #include <Svc/AssertFatalAdapter/AssertFatalAdapterComponentImpl.hpp>
 #include <Svc/FatalHandler/FatalHandlerComponentImpl.hpp>
 #include <Drv/BlockDriver/BlockDriverImpl.hpp>
+//Math tuto
+#include <Ref/MathSender/MathSenderComponentImpl.hpp>
+#include <Ref/MathReceiver/MathReceiverComponentImpl.hpp>
+
 #include <Drv/SocketIpDriver/SocketIpDriverComponentImpl.hpp>
 #include <Svc/GroundInterface/GroundInterface.hpp>
 
@@ -58,5 +62,9 @@ extern Ref::SendBuffImpl sendBuffComp;
 extern Ref::SignalGen SG1 , SG2, SG3, SG4, SG5;
 extern Ref::PingReceiverComponentImpl pingRcvr;
 extern Drv::SocketIpDriverComponentImpl socketIpDriver;
+
+//Math tuto
+extern Ref::MathSenderComponentImpl mathSender;
+extern Ref::MathReceiverComponentImpl mathReceiver;
 
 #endif

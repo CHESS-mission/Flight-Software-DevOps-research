@@ -1,9 +1,12 @@
 name: Daily Aplication Build
 
-# Builds project every day at 5:00
+# Builds project every day at 06:00
 on:
   schedule:
-    - cron: "20 9 * * *"
+    - cron: "30 10 * * *"
+
+env:
+  path: fprime/Ref
 
 jobs:
   build:
@@ -35,11 +38,11 @@ jobs:
 
       # Build the project (project script)
       - name: Build the project
-        run: ./scripts/build.sh
+        run: ./scripts/build.sh ${path}
 
       # Upload the artifact
       - name: Upload the application binaries
         uses: actions/upload-artifact@v2
         with:
           name: Application binaries
-          path: fprime/Ref/build-*
+          path: ${path}/build-*

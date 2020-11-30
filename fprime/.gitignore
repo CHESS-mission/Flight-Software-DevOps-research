@@ -7,7 +7,6 @@ test_harness/src/test_harness-C/application.out
 /.cproject
 *.pyc
 *.o
-*Ac.*
 *ComponentReport.txt
 lib*.a
 *-bin
@@ -25,12 +24,6 @@ Dict
 
 *.gcov
 !**/test/ut/output/*.gcov
-GTestBase.*
-TesterBase.*
-Tester.*
-!**/test/ut/GTestBase.*
-!**/test/ut/TesterBase.*
-!**/test/ut/Tester.*
 
 *.mdxml.bak
 *.sconsign.dblite
@@ -69,8 +62,6 @@ build-fprime-automatic*
 /RPI/bin
 /ci-venv/
 /ci-logs*
-TesterBase.*
-GTestBase.*
 /Fw/Python/.eggs
 /Fw/Python/src/fprime.egg-info
 /Gds/src/fprime_gds.egg-info
