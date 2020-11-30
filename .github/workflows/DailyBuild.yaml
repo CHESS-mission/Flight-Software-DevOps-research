@@ -3,7 +3,7 @@ name: Daily Aplication Build
 # Builds project every day at 06:00
 on:
   schedule:
-    - cron: "50 12 * * *"
+    - cron: "05 13 * * *"
 
 env:
   path: fprime/Ref
