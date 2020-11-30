@@ -3,7 +3,7 @@ name: Daily Aplication Build
 # Builds project every day at 06:00
 on:
   schedule:
-    - cron: "30 10 * * *"
+    - cron: "50 12 * * *"
 
 env:
   path: fprime/Ref
@@ -45,4 +45,4 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: Application binaries
-          path: ${path}/build-*
+          path: ${{ env.path }}/build-*
