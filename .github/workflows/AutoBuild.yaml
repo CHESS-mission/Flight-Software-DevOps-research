@@ -58,7 +58,7 @@ jobs:
         run: sudo apt install cppcheck -y
 
       - name: Compute cppcheck code analysis
-        run: cppcheck --xml --force ${{ env.path }}/build-fprime-automatic-native 2>./cppcheck.xml
+        run: cppcheck --xml --force build-fprime-automatic-native 2>./cppcheck.xml
 
       - name: Transform  XML into HTML
         run: |
