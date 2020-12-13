@@ -55,7 +55,9 @@ jobs:
           name: Build
 
       - name : prepare cppcheck
-        run: sudo apt install cppcheck -y
+        run: |
+          sudo apt install cppcheck -y
+          sudo apt install python-pygments -y
 
       - name: Compute cppcheck code analysis
         run: cppcheck --xml --force . 2>./cppcheck.xml
@@ -63,7 +65,7 @@ jobs:
       - name: Transform  XML into HTML
         run: |
           mkdir check-html/
-          cppcheck-htmlreport --file=cppcheck.xml --report-dir=./check-html/ --source-dir=.
+          cppcheck-htmlreport --file=cppcheck.xml --report-dir=./check-html/ --source-dir=. --title=CHESS-mission
 
       - name: upload HTML files 
         uses: actions/upload-artifact@v2
