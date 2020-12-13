@@ -9,6 +9,7 @@ env:
 jobs:
   build:
     runs-on: ubuntu-latest
+    name: Build application
     # https://docs.github.com/en/free-pro-team@latest/actions/guides/building-and-testing-python
     steps:
       # checkout the repository
@@ -34,9 +35,47 @@ jobs:
       # Build the project (project script)
       - name: Build the project
         run: ./scripts/build.sh ${path}
+      
+      # Upload vuild artifact for static analysis
+      - name: Upload the Build final folder
+        uses: actions/upload-artifact@v2
+        with:
+          name: Build
+          path: ${{ env.path }}/build-fprime-automatic-native
+
+  static_code_analysis:
+    needs: build
+    runs-on: ubuntu-latest
+    name: Static code Analysis
+    steps:
+
+      - name: download buld folder
+        uses: actions/download-artifact@v2
+        with:
+          name: Build
+
+      - name : prepare cppcheck
+        run: |
+          sudo apt install cppcheck -y
+          sudo apt install python-pygments -y
+
+      - name: Compute cppcheck code analysis
+        run: cppcheck --xml --force . 2>./cppcheck.xml
+
+      - name: Transform  XML into HTML
+        run: |
+          mkdir check-html/
+          cppcheck-htmlreport --file=cppcheck.xml --report-dir=./check-html/ --source-dir=. --title=CHESS-mission
+
+      - name: upload HTML files 
+        uses: actions/upload-artifact@v2
+        with:
+          name: cppCheck coverage report
+          path: ./check-html
 
   local_unit_test:
     runs-on: ubuntu-latest
+    name: Local unit tests
     steps:
       # checkout the repository
       - uses: actions/checkout@v2
@@ -64,6 +103,7 @@ jobs:
 
   global_unit_test:
     runs-on: ubuntu-latest
+    name: Global unit tests
     steps:
       # checkout the repository
       - uses: actions/checkout@v2
