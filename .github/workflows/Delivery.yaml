@@ -1,6 +1,5 @@
 name: Continous delivery
 
-# Builds project every day at 06:00
 on:
   push:
     #branches: [ main ]
@@ -29,7 +28,7 @@ jobs:
       # Put the build-artifacts folder at the "latest"
       - name: Put version as latest
         run: |
-          find ${{env.delivery-path}}/latest/* -delete
+          find '${{env.delivery-path}}/latest/*' -delete
           cp ${{env.path}}/build-artifacts ${{env.delivery-path}}/latest
 
       #put the build-artifacts folder as archive
