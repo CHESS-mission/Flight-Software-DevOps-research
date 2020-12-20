@@ -1,0 +1,32 @@
+name: Continous delivery
+
+# Builds project every day at 06:00
+on:
+  push:
+    #branches: [ main ]
+
+env:
+  path: fprime/Ref
+  delivery-path: '~/fsw/devops'
+
+jobs:
+  build:
+    runs-on: self-hosted
+    
+    steps:
+      # checkout the repository
+      - uses: actions/checkout@v2
+
+      # Build the project (project script)
+      - name: Build the project
+        run: ./scripts/build.sh ${{path}}
+
+      # Put the build-artifacts folder at the "latest"
+      - name: Put version as latest
+        run: |
+          find ${{delivery-path}}/latest/* -delete
+          cp ${{path}}/build-artifacts ${{delivery-path}}/latest
+
+      #put the build-artifacts folder as archive
+      - name: Put verson in archive
+        run: cp ${{path}}/build-artifacts ${{delivery-path}}/archives/$(date +"%d_%m_%Y_%H:%M:%S")
