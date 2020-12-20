@@ -7,7 +7,7 @@ on:
 
 env:
   path: fprime/Ref
-  delivery-path: '~/fsw/devops'
+  delivery-path: ~/fsw/devops
 
 jobs:
   build:
@@ -19,14 +19,14 @@ jobs:
 
       # Build the project (project script)
       - name: Build the project
-        run: ./scripts/build.sh ${{path}}
+        run: ./scripts/build.sh ${{env.path}}
 
       # Put the build-artifacts folder at the "latest"
       - name: Put version as latest
         run: |
-          find ${{delivery-path}}/latest/* -delete
-          cp ${{path}}/build-artifacts ${{delivery-path}}/latest
+          find ${{env.delivery-path}}/latest/* -delete
+          cp ${{env.path}}/build-artifacts ${{env.delivery-path}}/latest
 
       #put the build-artifacts folder as archive
       - name: Put verson in archive
-        run: cp ${{path}}/build-artifacts ${{delivery-path}}/archives/$(date +"%d_%m_%Y_%H:%M:%S")
+        run: cp ${{env.path}}/build-artifacts ${{env.delivery-path}}/archives/$(date +"%d_%m_%Y_%H:%M:%S")
