@@ -36,7 +36,7 @@ jobs:
       - name: Build the project
         run: ./scripts/build.sh ${path}
       
-      # Upload vuild artifact for static analysis
+      # Upload build artifact for static analysis
       - name: Upload the Build final folder
         uses: actions/upload-artifact@v2
         with:
