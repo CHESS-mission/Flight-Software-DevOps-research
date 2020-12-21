@@ -32,6 +32,7 @@ jobs:
 
       #prepare (download & export variable) the RPI toolchain
       - name: Toolchain installation
+        run: |
           sudo git clone https://github.com/raspberrypi/tools.git
           export RPI_TOOLCHAIN_DIR=./tools
 
