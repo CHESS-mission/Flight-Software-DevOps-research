@@ -41,13 +41,17 @@ jobs:
       # Build the project (project script)
       - name: Build the project
         run: ./scripts/build.sh ${path} raspberrypi
+
+      #move the script at the root inside a folder to avoid deflattening
+      - name: Move build at root
+        run: mv ${{ env.path }}/build-artifacts artifacts/build-artifacts
       
       # Upload build artifact for static analysis
       - name: Upload the Build final folder
         uses: actions/upload-artifact@v2
         with:
           name: Build
-          path: ${{ env.path }}/build-artifacts
+          path: artifacts
 
   delivery:
     needs: build
@@ -64,8 +68,8 @@ jobs:
       - name: Put version as latest
         run: |
           find "${{ env.delivery-path }}/latest/*" -delete || true
-          cp -r . ${{ env.delivery-path }}/latest/build-artifacts
+          cp -r build-artifacts ${{ env.delivery-path }}/latest/build-artifacts
 
       #put the build-artifacts folder as archive
       - name: Put verson in archive
-        run: cp -r . ${{ env.delivery-path }}/archives/$(date +"%d_%m_%Y_%H:%M:%S")
+        run: cp -r build-artifacts ${{ env.delivery-path }}/archives/$(date +"%d_%m_%Y_%H:%M:%S")
