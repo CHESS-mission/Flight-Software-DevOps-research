@@ -11,7 +11,7 @@ env:
 jobs:
   build:
     runs-on: ubuntu-latest
-    name: Build application
+    name: Cross-compile
     # https://docs.github.com/en/free-pro-team@latest/actions/guides/building-and-testing-python
     steps:
       # checkout the repository
@@ -32,9 +32,7 @@ jobs:
 
       #prepare (download & export variable) the RPI toolchain
       - name: Toolchain installation
-        run: |
-          sudo git clone https://github.com/raspberrypi/tools.git
-          export RPI_TOOLCHAIN_DIR=./tools
+        run: sudo git clone https://github.com/raspberrypi/tools.git /opt/rpi/
 
       # Init the virtual environnement (project script)
       - name: Prepare venv
@@ -54,7 +52,7 @@ jobs:
   delivery:
     needs: build
     runs-on: self-hosted
-    name: Delivery
+    name: Deliver
     steps:
 
       - name: download buld folder
