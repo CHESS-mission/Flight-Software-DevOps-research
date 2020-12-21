@@ -64,8 +64,8 @@ jobs:
       - name: Put version as latest
         run: |
           find "${{ env.delivery-path }}/latest/*" -delete || true
-          cp -r build-artifacts ${{ env.delivery-path }}/latest
+          cp -r . ${{ env.delivery-path }}/latest/build-artifacts
 
       #put the build-artifacts folder as archive
       - name: Put verson in archive
-        run: cp -r build-artifacts ${{ env.delivery-path }}/archives/$(date +"%d_%m_%Y_%H:%M:%S")
+        run: cp -r . ${{ env.delivery-path }}/archives/$(date +"%d_%m_%Y_%H:%M:%S")
