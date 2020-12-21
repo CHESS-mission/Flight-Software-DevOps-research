@@ -1,8 +1,8 @@
-name: Continous delivery
+name: Continous delivery Cross-compilation
 
 on:
   push:
-    #branches: [ main ]
+    branches: [ main ]
 
 env:
   path: fprime/Ref
@@ -12,7 +12,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     name: Cross-compile
-    # https://docs.github.com/en/free-pro-team@latest/actions/guides/building-and-testing-python
+
     steps:
       # checkout the repository
       - uses: actions/checkout@v2
@@ -78,5 +78,5 @@ jobs:
           cp -r build-artifacts ${{ env.delivery-path }}/latest/build-artifacts
 
       #put the build-artifacts folder as archive
-      - name: Put verson in archive
+      - name: Put version in archive
         run: cp -r build-artifacts ${{ env.delivery-path }}/archives/$(date +"%d_%m_%Y_%H:%M:%S")
