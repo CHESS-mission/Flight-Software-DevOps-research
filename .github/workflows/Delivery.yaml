@@ -28,7 +28,7 @@ jobs:
       # Put the build-artifacts folder at the "latest"
       - name: Put version as latest
         run: |
-          find "${{ env.delivery-path }}/latest/*" -delete || true
+          find ${{ env.delivery-path }}/latest/* -delete || true
           cp -r ${{env.path}}/build-artifacts ${{env.delivery-path}}/latest
 
       #put the build-artifacts folder as archive
