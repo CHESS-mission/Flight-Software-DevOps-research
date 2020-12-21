@@ -36,4 +36,4 @@ jobs:
         run: |
           date_now=$(date +"%d_%m_%Y_%H:%M:%S")
           mkdir ${{ env.delivery-path }}/archives/$date_now
-          cp -r ${{env.path}}/build-artifacts ${{env.delivery-path}}/$date_now/build-artifacts
+          cp -r ${{env.path}}/build-artifacts ${{env.delivery-path}}/archives/$date_now/build-artifacts
