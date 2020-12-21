@@ -44,7 +44,9 @@ jobs:
 
       #move the script at the root inside a folder to avoid deflattening
       - name: Move build at root
-        run: mv ${{ env.path }}/build-artifacts artifacts/build-artifacts
+        run: |
+          mkdir artifacts
+          mv ${{ env.path }}/build-artifacts artifacts/build-artifacts
       
       # Upload build artifact for static analysis
       - name: Upload the Build final folder
