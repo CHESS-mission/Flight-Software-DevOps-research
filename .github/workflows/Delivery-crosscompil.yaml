@@ -66,6 +66,9 @@ jobs:
         with:
           name: Build
 
+      - name: give execution rights to app
+        run: sudo chmod a+x build-artifacts/*/bin/*
+
       # Put the build-artifacts folder at the "latest"
       - name: Put version as latest
         run: |
