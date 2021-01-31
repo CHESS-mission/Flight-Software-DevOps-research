@@ -1,7 +1,7 @@
 name: Automatic Application Build
 
 # Builds project on every push and PR
-on:  [push, pull_request]
+on: [push, pull_request]
 
 env:
   path: fprime/Ref
